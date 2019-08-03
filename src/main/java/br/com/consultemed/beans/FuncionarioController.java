@@ -60,4 +60,8 @@ public class FuncionarioController {
 		this.funcionarios = this.service.listaFuncionario();
 		return funcionarios;
 	}
+	
+	public boolean existeFuncionarioComEmail(String email) {
+		return this.service.getFuncionarioByEmail(email);
+	}
 }

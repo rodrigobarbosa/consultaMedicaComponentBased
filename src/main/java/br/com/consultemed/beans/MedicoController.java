@@ -67,4 +67,8 @@ public class MedicoController{
 		this.medicos = this.service.listaMedico();
 		return medicos;
 	}
+	
+	public boolean existeMedicoComEmail(String email) {
+		return this.service.getMedicoByEmail(email);
+	}
 }

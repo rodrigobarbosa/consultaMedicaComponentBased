@@ -30,4 +30,12 @@ public class MedicoService {
 	public void deletarMedico(Long id) throws Exception {
 		this.dao.deleteById(id);
 	}
+	
+	public boolean getMedicoByCrm(String crm) {
+		if(this.dao.getMedicoByCrm(crm)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

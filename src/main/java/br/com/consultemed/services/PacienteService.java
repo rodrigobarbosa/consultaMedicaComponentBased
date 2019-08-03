@@ -23,4 +23,12 @@ public class PacienteService {
 	public void deletarPaciente(Long id) throws Exception {
 		this.dao.deleteById(id);
 	}
+	
+	public boolean getPacienteByEmail(String email) {
+		if(this.dao.getPacienteByEmail(email)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

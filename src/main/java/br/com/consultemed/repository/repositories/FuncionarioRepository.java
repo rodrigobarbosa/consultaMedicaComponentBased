@@ -79,4 +79,18 @@ public class FuncionarioRepository {
 		}
 
 	}
+
+	public boolean getFuncionarioByEmail(String email) {
+
+		String jpql = "SELECT object(f) FROM Funcionario as f WHERE f.email = :email";
+		Query query = this.factory.createQuery(jpql);
+		query.setParameter("email", email);
+
+		if (query.getSingleResult() != null) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
 }

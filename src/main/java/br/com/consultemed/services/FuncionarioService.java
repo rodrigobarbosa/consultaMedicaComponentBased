@@ -23,4 +23,12 @@ public class FuncionarioService {
 	public void deletarFuncionario(Long id) throws Exception {
 		this.dao.deleteById(id);
 	}
+	
+	public boolean getFuncionarioByEmail(String email) {
+		if(this.dao.getFuncionarioByEmail(email)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

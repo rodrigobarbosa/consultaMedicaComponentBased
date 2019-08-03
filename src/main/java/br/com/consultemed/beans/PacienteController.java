@@ -60,4 +60,8 @@ public class PacienteController {
 		this.pacientes = this.service.listaPaciente();
 		return pacientes;
 	}
+	
+	public boolean existePacienteComEmail(String email) {
+		return this.service.getPacienteByEmail(email);
+	}
 }
