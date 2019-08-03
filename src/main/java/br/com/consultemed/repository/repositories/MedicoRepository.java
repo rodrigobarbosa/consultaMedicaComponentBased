@@ -89,19 +89,21 @@ public class MedicoRepository {
 
 	public boolean getMedicoByCrm(String crm) {
 		try {
-		
+
 			String jpql = "SELECT object(m) FROM Medico as m WHERE m.crm = :crm";
 			Query query = this.factory.createQuery(jpql);
 			query.setParameter("crm", crm);
-	
+
 			if (query.getSingleResult() != null) {
 				return true;
-			} else { return false; }
-			
-		} catch (Exception e) {
+			} else {
 				return false;
+			}
+
+		} catch (Exception e) {
+			return false;
 		}
-			
+
 	}
 
 }

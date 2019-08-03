@@ -81,14 +81,18 @@ public class PacienteRepository {
 	}
 
 	public boolean getPacienteByEmail(String email) {
+		try {
 
-		String jpql = "SELECT objectpf) FROM Paciente as p WHERE p.email = :email";
-		Query query = this.factory.createQuery(jpql);
-		query.setParameter("email", email);
+			String jpql = "SELECT object(p) FROM Paciente as p WHERE p.email = :email";
+			Query query = this.factory.createQuery(jpql);
+			query.setParameter("email", email);
 
-		if (query.getSingleResult() != null) {
-			return true;
-		} else {
+			if (query.getSingleResult() != null) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
 			return false;
 		}
 
