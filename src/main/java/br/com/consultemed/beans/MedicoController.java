@@ -59,6 +59,11 @@ public class MedicoController{
 	}
 	
 	public String addMedico() {
+		if(this.existeMedicoComCrm(this.medico.getCrm())) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "CRM existe!"));
+			return null;
+		}
+		
 		this.service.salvarMedico(this.medico);
 		return "/pages/medicos/medicos.xhtml?faces-redirect=true";
 	}
@@ -68,7 +73,8 @@ public class MedicoController{
 		return medicos;
 	}
 	
-	public boolean existeMedicoComEmail(String email) {
-		return this.service.getMedicoByEmail(email);
+	public boolean existeMedicoComCrm(String crm) {
+		return this.service.getMedicoByCrm(crm);
 	}
+	
 }

@@ -52,6 +52,11 @@ public class PacienteController {
 	}
 	
 	public String addPaciente() {
+		if(this.existePacienteComEmail(this.paciente.getEmail())) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Email existe!"));
+			return null;
+		}
+		
 		this.service.salvarPaciente(this.paciente);
 		return "/pages/pacientes/pacientes.xhtml?faces-redirect=true";
 	}

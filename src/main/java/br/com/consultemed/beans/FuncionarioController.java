@@ -52,6 +52,10 @@ public class FuncionarioController {
 	}
 	
 	public String addFuncionario() {
+		if(this.existeFuncionarioComEmail(this.funcionario.getEmail())) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Email existe!"));
+			return null;
+		}
 		this.service.salvarFuncionario(this.funcionario);
 		return "/pages/funcionarios/funcionarios.xhtml?faces-redirect=true";
 	}
