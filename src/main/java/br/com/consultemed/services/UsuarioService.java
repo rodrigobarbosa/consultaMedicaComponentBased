@@ -19,7 +19,15 @@ public class UsuarioService {
 	@Inject
 	private UsuarioRepository dao;
 	
-	public List<Usuario> listaUsuarios(){
+	public List<Usuario> listaUsuario(){
 		return this.dao.listaUsuarios();
+	}
+	
+	public void salvarUsuario(Usuario usuario) {
+		this.dao.salvarUsuario(usuario);
+	}
+	
+	public void deletarUsuario(Long id) throws Exception {
+		this.dao.deleteById(id);
 	}
 }
