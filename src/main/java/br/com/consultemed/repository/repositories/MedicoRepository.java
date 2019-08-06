@@ -24,19 +24,15 @@ public class MedicoRepository {
 	EntityManagerFactory emf = JPAUtils.getEntityManagerFactory();
 	EntityManager factory = emf.createEntityManager();
 
-	public List<Medico> listaMedicos() {
-		Query query = this.factory.createQuery("SELECT object(m) FROM Medico as m");
-		return query.getResultList();
-	}
 
-	public Collection<Medico> listarMedicos() throws Exception {
+	public List<Medico> listarMedicos() throws Exception {
 		this.factory = emf.createEntityManager();
-		List<Medico> contatos = new ArrayList<Medico>();
+		List<Medico> medicos = new ArrayList<Medico>();
 		try {
 			factory.getTransaction().begin();
-			TypedQuery<Medico> query = factory.createNamedQuery("Medico.findAll", Medico.class);
-			contatos = query.getResultList();
+			Query query = this.factory.createQuery("SELECT object(m) FROM Medico as m");
 			factory.getTransaction().commit();
+			return query.getResultList();
 
 		} catch (Exception e) {
 			e.getMessage();
@@ -45,7 +41,7 @@ public class MedicoRepository {
 			factory.close();
 		}
 
-		return contatos;
+		return medicos;
 	}
 
 	public void salvarMedico(Medico medico) {

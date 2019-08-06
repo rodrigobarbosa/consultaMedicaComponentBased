@@ -7,17 +7,28 @@
 </h:head>
 
 <h:body>
-	<h:form style="align:center">
 
-		<p:panelGrid columns="2">
-			<p:outputLabel for="nomeUsuario" value="Login Usuário:" />
-			<p:inputText id="nomeUsuario" value="#{loginController.usuarioLogado.usuario.login}" />
+	<div align="center" style="margin-top: 300px;">
 
-			<p:outputLabel for="senha" value="Senha:" />
-			<p:password id="senha" value="#{loginController.usuarioLogado.usuario.senha}" />
-		</p:panelGrid>
-		
-			<p:commandButton value="Enviar" action="#{loginController.loginUsuario()}" ajax="false"/>
-	</h:form>
+		<h:form style="align:center">
+
+			<h:panelGrid columns="2">
+				<h:outputLabel for="nomeUsuario" value="Login" />
+				<p:inputText id="nomeUsuario" value="#{loginController.usuarioLogado.usuario.login}" />
+				
+			
+				<h:outputLabel for="senha" value="Senha" />
+				<p:password id="senha" value="#{loginController.usuarioLogado.usuario.senha}" />
+				
+				<p:spacer height="10"/>
+				
+			</h:panelGrid>
+
+			<p:commandButton value="Enviar" action="#{loginController.loginUsuario()}" ajax="false" />
+			
+		</h:form>
+	</div>
 </h:body>
 </html>
+
+
