@@ -5,25 +5,37 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import br.com.consultemed.models.Usuario;
 
 /**
  * Servlet Filter implementation class FilterLoggin
  */
-//@WebFilter(filterName = "/filterLoggin", urlPatterns = {"/*"})
+//@WebFilter(filterName = "/filterLoggin", urlPatterns = { "/*" })
 public class FilterLogin implements Filter {
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpSession session = req.getSession();
 		
-		//RECUPERA A SESSAO
-		//INVALIDA A SESSAO
-		//VERIFICA SE O USUÁRIO QUE ESTÁ ACESSO O LOGIN, EXISTE E TEM AS CREDENCIAIS DE ACESSO AO SISTEMA
-			//SE EXISTE E TEM ACESSO, COLOCA O USUÁRIO NA SESSÃO E DIRECIONA PARA A HOME DO SISTEMA
-			//SE NÃO EXISTE, REDIRECIONA PARA A TELA DE LOGIN COM A MENSAGEM DE USUÁRIO INVÁLIDO, SENHA E OU LOGIN INVÁLIDOS 
+		String url = req.getServletPath();
+
+		Usuario usuarioLogado = (Usuario)session.getAttribute("usuario");
 		
+		if(usuarioLogado == null && !url.equalsIgnoreCase("/login.xhtml")) {
+			RequestDispatcher rd = request.getRequestDispatcher(url);
+			rd.forward(request, response);
+		}
+		chain.doFilter(request, response);
 	}
 
 	@Override
@@ -33,6 +45,6 @@ public class FilterLogin implements Filter {
 
 	@Override
 	public void destroy() {
-		
+
 	}
 }

@@ -5,12 +5,13 @@ package br.com.consultemed.beans;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.apache.log4j.Logger;
 
 import br.com.consultemed.models.Medico;
 import br.com.consultemed.services.MedicoService;
@@ -24,6 +25,8 @@ import lombok.Setter;
 @Named
 @RequestScoped
 public class MedicoController{
+	
+	final static Logger logger = Logger.getLogger(MedicoController.class);
 	
 	@Getter
 	@Setter

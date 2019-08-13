@@ -40,9 +40,9 @@ public class UsuarioLogado implements Serializable {
 	}
 
 	public void logout() {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		session.invalidate();
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		
 	}
 	

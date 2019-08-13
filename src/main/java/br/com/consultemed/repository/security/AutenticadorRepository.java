@@ -15,8 +15,6 @@ public class AutenticadorRepository {
 	EntityManager factory = emf.createEntityManager();
 	
 	
-	
-	
 	public Usuario autenticador(String login, String senha) {
 		
 		Usuario usuario = null;
