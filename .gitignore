@@ -4,3 +4,4 @@
 /target/
 *.project
 *.tern-project
+*.DS_Store

@@ -30,12 +30,12 @@ public class LoginController implements Serializable {
 	
 	public String  loginUsuario() {
 		this.usuarioLogado.logar();
-		return "home?faces-redirect=true";
+		return "/home";
 	}
 	
 	public String logout() {
 		this.usuarioLogado.logout();
-		return "login?faces-redirect=true";
+		return "/login";
 	}
 	
 //	Fase 1: Restore View (Restauração da visão);

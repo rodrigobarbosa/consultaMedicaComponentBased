@@ -19,8 +19,8 @@ public class MedicoService {
 	@Inject
 	private MedicoRepository dao;
 	
-	public List<Medico> listaMedico(){
-		return this.dao.listaMedicos();
+	public List<Medico> listaMedico() throws Exception{
+		return this.dao.listarMedicos();
 	}
 	
 	public void salvarMedico(Medico medico) {
