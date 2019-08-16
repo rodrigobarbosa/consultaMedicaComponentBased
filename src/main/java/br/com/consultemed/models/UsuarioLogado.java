@@ -29,6 +29,15 @@ public class UsuarioLogado implements Serializable {
 	@Inject
 	private Usuario usuario;
 	
+	public AutenticadorService getAutenticador() {
+		return autenticador;
+	}
+
+	public void setAutenticador(AutenticadorService autenticador) {
+		this.autenticador = autenticador;
+	}
+
+
 	@Inject
 	private AutenticadorService autenticador;
 
