@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="content">
+
+		<p:spacer height="10" />
+
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Home" url="#" />
+				<p:menuitem value="AgendamentoConsultas" url="#" />
+			</p:breadCrumb>
+		</h:form>
+	
+		<p:spacer height="10" />
+		
+			
+		<h:form id="frm">
+
+			<p:messages showDetail="false" showSummary="true" globalOnly="true" />
+			<p:dataTable id="table-agendamentoConsultas" var="agendamentoConsulta"
+				value="#{agendamentoConsultaController.listaAgendamentosConsultas()}">
+				<p:column headerText="Medico">
+					<h:outputText value="#{agendamentoConsulta.medico}" />
+				</p:column>
+
+				<p:column headerText="Paciente">
+					<h:outputText value="#{agendamentoConsulta.paciente}" />
+				</p:column>
+
+				<p:column headerText="Data">
+					<h:outputText value="#{agendamentoConsulta.dataAgendamentoConsulta}" />
+				</p:column>
+
+				<p:column>
+					<p:commandLink action="#{agendamentoConsultaController.editar()}" value="Editar">
+						<f:setPropertyActionListener target="#{agendamentoConsultaController.agendamentoConsultaEditar}" value="#{agendamentoConsulta}" />
+					</p:commandLink>
+
+					<p:spacer width="10" />
+
+					<p:commandLink action="#{agendamentoConsultaController.excluir()}"
+						value="Excluir" update="@form" process="@this">
+						<f:setPropertyActionListener target="#{agendamentoConsultaController.agendamentoConsultaEditar}" value="#{agendamentoConsulta}" />
+					</p:commandLink>
+
+				</p:column>
+
+			</p:dataTable>
+
+			<p:spacer height="30" width="10" />
+
+
+			<p:commandLink id="novoAgendamentoConsulta"
+				action="#{agendamentoConsultaController.novoAgendamentoConsulta()}" style="margin-right:20px;">
+				<h:outputText value="Novo Agendamento de Consulta" />
+			</p:commandLink>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
