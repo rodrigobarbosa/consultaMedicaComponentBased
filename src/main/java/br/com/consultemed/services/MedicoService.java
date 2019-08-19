@@ -31,11 +31,7 @@ public class MedicoService {
 		this.dao.deleteById(id);
 	}
 	
-	public boolean getMedicoByCrm(String crm) {
-		if(this.dao.getMedicoByCrm(crm)) {
-			return true;
-		}else {
-			return false;
-		}
+	public Medico getMedicoByCrm(String crm) {
+		return this.dao.getMedicoByCrm(crm);
 	}
 }

@@ -25,29 +25,28 @@ import lombok.Setter;
  */
 
 @NamedQueries({ @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-	@NamedQuery(name = "Usuario.loginUsuario", query = "SELECT u FROM Usuario u WHERE u.login =:login AND u.senha =:senha") })
-
+		@NamedQuery(name = "Usuario.loginUsuario", query = "SELECT u FROM Usuario u WHERE u.login =:login AND u.senha =:senha") })
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name = "TB_USUARIOS")
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Getter
 	@Setter
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Getter
 	@Setter
 	@Column(name = "LOGIN")
 	private String login;
-	
+
 	@Getter
 	@Setter
 	@Column(name = "SENHA")
 	private String senha;
-	
+
 }

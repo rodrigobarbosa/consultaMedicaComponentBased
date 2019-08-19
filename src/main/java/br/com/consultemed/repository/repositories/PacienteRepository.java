@@ -14,8 +14,8 @@ import br.com.consultemed.utils.JPAUtils;
 
 public class PacienteRepository {
 
-	EntityManagerFactory emf = JPAUtils.getEntityManagerFactory();
-	EntityManager factory = emf.createEntityManager();
+	EntityManagerFactory em = JPAUtils.getEntityManagerFactory();
+	EntityManager factory = em.createEntityManager();
 
 	public List<Paciente> listaPacientes() {
 		Query query = this.factory.createQuery("SELECT object(p) FROM Paciente as p");
@@ -23,7 +23,7 @@ public class PacienteRepository {
 	}
 
 	public Collection<Paciente> listarPacientes() throws Exception {
-		this.factory = emf.createEntityManager();
+		this.factory = em.createEntityManager();
 		List<Paciente> pacientes = new ArrayList<Paciente>();
 		try {
 			factory.getTransaction().begin();
@@ -42,7 +42,7 @@ public class PacienteRepository {
 	}
 
 	public void salvarPaciente(Paciente paciente) {
-		this.factory = emf.createEntityManager();
+		this.factory = em.createEntityManager();
 		try {
 			factory.getTransaction().begin();
 			if (paciente.getId() == null) {
@@ -61,7 +61,7 @@ public class PacienteRepository {
 	}
 
 	public void deleteById(Long id) throws Exception {
-		this.factory = emf.createEntityManager();
+		this.factory = em.createEntityManager();
 		Paciente paciente = new Paciente();
 
 		try {
@@ -80,21 +80,11 @@ public class PacienteRepository {
 
 	}
 
-	public boolean getPacienteByEmail(String email) {
-		try {
-
-			String jpql = "SELECT object(p) FROM Paciente as p WHERE p.email = :email";
-			Query query = this.factory.createQuery(jpql);
-			query.setParameter("email", email);
-
-			if (query.getSingleResult() != null) {
-				return true;
-			} else {
-				return false;
-			}
-		} catch (Exception e) {
-			return false;
-		}
+	public Paciente getPacienteByEmail(String email) {
+		this.factory = em.createEntityManager();
+		Query query = factory.createQuery("SELECT P FROM Paciente P Where P.email = :email");
+		query.setParameter("email", email);
+		return (Paciente) query.getSingleResult();
 
 	}
 }

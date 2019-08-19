@@ -60,7 +60,7 @@ public class AgendamentoConsultaRepository {
 		}
 	}
 
-	public void deleteById(Long id) throws Exception {
+	public void deletarAgendamentoConsultaById(Long id) throws Exception {
 		this.factory = emf.createEntityManager();
 		AgendamentoConsulta agendamentoConsulta = new AgendamentoConsulta();
 

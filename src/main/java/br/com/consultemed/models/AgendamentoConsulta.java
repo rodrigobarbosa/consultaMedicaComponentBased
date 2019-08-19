@@ -2,8 +2,11 @@ package br.com.consultemed.models;
 
 import java.util.Date;
 
+import javax.inject.Inject;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,15 +35,29 @@ public class AgendamentoConsulta {
 	@Getter
 	@Setter
 	@Column(name = "MEDICOS")
+	@Inject
 	public Medico medicos;
 	
 	@Getter
 	@Setter
 	@Column(name = "PACIENTES")
+	@Inject
 	public Paciente pacientes;
 	
 	@Getter
 	@Setter
 	@Column(name = "DATAAGENDAMENTOCONSULTA")
 	public Date dataAgendamentoConsulta;
+	
+	@Getter
+	@Setter
+	@Column(name ="DATACANCELAMENTOCONSULTA")
+	public Date dataCancelamentoConsulta;
+	
+	@Getter
+	@Setter
+	@Enumerated(EnumType.STRING)
+	@Column
+	@Inject
+	private StatusConsulta statusConsulta;
 }

@@ -4,13 +4,11 @@
 package br.com.consultemed.repository.repositories;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 import br.com.consultemed.models.Medico;
 import br.com.consultemed.utils.JPAUtils;
@@ -21,12 +19,11 @@ import br.com.consultemed.utils.JPAUtils;
  */
 public class MedicoRepository {
 
-	EntityManagerFactory emf = JPAUtils.getEntityManagerFactory();
-	EntityManager factory = emf.createEntityManager();
-
+	EntityManagerFactory em = JPAUtils.getEntityManagerFactory();
+	EntityManager factory = em.createEntityManager();
 
 	public List<Medico> listarMedicos() throws Exception {
-		this.factory = emf.createEntityManager();
+		this.factory = em.createEntityManager();
 		List<Medico> medicos = new ArrayList<Medico>();
 		try {
 			factory.getTransaction().begin();
@@ -45,7 +42,7 @@ public class MedicoRepository {
 	}
 
 	public void salvarMedico(Medico medico) {
-		this.factory = emf.createEntityManager();
+		this.factory = em.createEntityManager();
 		try {
 			factory.getTransaction().begin();
 			if (medico.getId() == null) {
@@ -64,7 +61,7 @@ public class MedicoRepository {
 	}
 
 	public void deleteById(Long id) throws Exception {
-		this.factory = emf.createEntityManager();
+		this.factory = em.createEntityManager();
 		Medico medico = new Medico();
 
 		try {
@@ -83,23 +80,11 @@ public class MedicoRepository {
 
 	}
 
-	public boolean getMedicoByCrm(String crm) {
-		try {
-
-			String jpql = "SELECT object(m) FROM Medico as m WHERE m.crm = :crm";
-			Query query = this.factory.createQuery(jpql);
-			query.setParameter("crm", crm);
-
-			if (query.getSingleResult() != null) {
-				return true;
-			} else {
-				return false;
-			}
-
-		} catch (Exception e) {
-			return false;
-		}
-
+	public Medico getMedicoByCrm(String crm) {
+		this.factory = em.createEntityManager();
+		Query query = factory.createQuery("SELECT M FROM Medico M Where M.crm = :crm");
+		query.setParameter("crm", crm);
+		return (Medico) query.getSingleResult();
 	}
 
 }

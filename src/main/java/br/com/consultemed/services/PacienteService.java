@@ -24,11 +24,7 @@ public class PacienteService {
 		this.dao.deleteById(id);
 	}
 	
-	public boolean getPacienteByEmail(String email) {
-		if(this.dao.getPacienteByEmail(email)) {
-			return true;
-		}else {
-			return false;
-		}
+	public Paciente getPacienteByEmail(String email) {
+		return this.dao.getPacienteByEmail(email);
 	}
 }
